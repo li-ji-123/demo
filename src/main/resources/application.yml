@@ -1,0 +1,13 @@
+server:
+  port: 8899
+
+spring:
+  datasource:
+    url: 'jdbc:mysql://lijifeng.mysql.rds.aliyuncs.com:3306/science?serverTimezone=UTC&characterEncoding=utf-8&allowMultiQueries=true'
+    username: 'root'
+    password: '@LJF_li0104'
+    driver-class-name: 'com.mysql.cj.jdbc.Driver'
+
+mybatis-plus:
+  mapper-locations: 'classpath:mapper/*.xml'
+  type-aliases-package: 'com.example.demo.entity'

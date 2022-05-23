@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MainMenuMapper">
+
+    <select id="getMenu" resultType="com.example.demo.pojo.DTO.MenuDTO" parameterType="java.lang.String">
+        SELECT a.id as mainMenuId, a.main_menu_name AS mainMenuName,s.id as subMenuId, s.sub_menu_name AS subMenuName
+        FROM sub_menu s
+                 right JOIN (
+            SELECT main_menu_name,id,sort
+            FROM main_menu m
+            WHERE m.system_code=#{systemCode}) a ON s.main_menu_id=a.id
+        ORDER BY a.sort,a.id,s.sort,s.id
+    </select>
+    <select id="getMainMenus" resultType="com.example.demo.entity.MainMenu">
+        SELECT *
+        FROM main_menu
+        WHERE is_delete=0 and system_code=#{systemCode}
+        ORDER BY sort,id
+    </select>
+
+</mapper>
